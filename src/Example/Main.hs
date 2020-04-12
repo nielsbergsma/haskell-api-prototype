@@ -27,7 +27,7 @@ resources :: [RouteHandler]
 resources = 
   [ get   [] index
   , get   ["home"] home
-  , patch ["users", ":user"] user
+  , patch ["users", ":user_id"] user
   , get   ["people"] people
   , get   ["people", ":person_id"] person
   ]
@@ -35,7 +35,7 @@ resources =
 -- Main
 main :: IO ()
 main = do 
-  jwksFilePath     <- getEnv "JWKS_PATH"
+  jwksFilePath     <- getEnv "JWKS_FILE_PATH"
   jwtAudience      <- getEnv "JWT_AUDIENCE"
   connectionString <- getEnv "CONNECTION_STRING"
   jwks             <- Jwt.readJwksFile jwksFilePath >>= rightOrError
@@ -43,7 +43,7 @@ main = do
   let context = mkHttpContext jwks [Jwt.audienceFromString jwtAudience] connectionPool
 
   run 3000 
-    $ addHeaders [("Server", "your logo here")] 
+    $ addHeaders [("Server", "your name here")] 
     $ gzip def { gzipFiles = GzipCompress }
     $ staticPolicy (addBase "static")
     $ route context resources
