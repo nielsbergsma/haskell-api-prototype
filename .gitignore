@@ -1,0 +1,8 @@
+.cabal-sandbox
+.DS_Store
+
+dist/
+static/
+
+jwks.json
+cabal.sandbox.config

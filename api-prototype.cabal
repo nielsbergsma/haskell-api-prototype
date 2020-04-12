@@ -1,0 +1,56 @@
+cabal-version:       >=1.10
+name:                api-prototype
+version:             0.1.0.0
+author:              Niels Bergsma
+maintainer:          n.bergsma@gmail.com
+build-type:          Simple
+
+executable api-prototype
+  main-is:             Example/Main.hs
+  other-modules:
+                       Network.Api.Rest.Authorization.Jwt
+                     , Network.Api.Rest.Handlers
+                     , Network.Api.Rest.Routing
+                     , Network.Api.Rest.Error
+                     , Network.Api.Rest.Context
+                     , Network.Api.Rest.Validate
+                     , Network.Api.Rest.Validation.JsonPath
+                     , Network.Api.Rest.Validation.JsonValidator
+                     , Network.Api.Rest.Validation.ParameterValidator
+
+                     , Example.Api.Common
+                     , Example.Api.Resources.Home
+                     , Example.Api.Resources.Index
+                     , Example.Api.Resources.User
+                     , Example.Api.Resources.Person
+                     , Example.Api.Resources.People
+
+  -- other-extensions:
+  hs-source-dirs:     src
+  ghc-options:        -Wall -O2
+  build-depends:       base >=4.12 && <4.13
+                     , http-types >= 0.9.1 && < 0.13
+                     , wai >= 3.0.0 && < 3.3
+                     , wai-extra >= 3.0.0 && < 3.1
+                     , wai-middleware-static
+                     , warp >= 3.0.13 && < 3.4
+                     , containers
+                     , mtl
+                     , bytestring
+                     , text
+                     , text-icu
+                     , transformers
+                     , utf8-string
+                     , aeson
+                     , postgresql-simple
+                     , resource-pool
+                     , lens
+                     , unordered-containers
+                     , vector
+                     , jose
+                     , parsec
+                     , scientific
+  default-language:    Haskell2010
+
+
+-- DYLD_LIBRARY_PATH=/usr/local/opt/icu4c/lib  cabal v1-install text-icu --extra-include-dirs=/usr/local/opt/icu4c/include --extra-lib-dirs=/usr/local/opt/icu4c/lib
