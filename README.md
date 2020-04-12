@@ -11,11 +11,14 @@ This is my research into the world of Haskell. Specicificly how to build modern 
 This repository is (currently) merely a recording of my progress.
 
 ## What's done? and what's next?
-- [x] create a lightweight abstract on top of WAI, as a micro web framework
+- [x] lightweight abstraction on top of WAI, as a micro Restful library
 - [x] auto-generate API based op OpenAPI v3 spec
 - [x] validate url + query parameters
 - [x] validate json body, based on OpenAPI v3 spec
-- [x] transform body to transfer objects (product and sum types)
+- [x] transform body to transfer objects (for both product and sum types)
+- [x] comprehensive validation DSL (json body, url + query parameters)
+- [x] strong typed error messages (human + machine interpretable), includes JSON path for Request Body error messages
+- [x] JWT authorization / authentication, role based with JWK validation
 - [ ] "auto wire" transfer objects to commands
 - [ ] command handlers, sagas, process managers
 - [ ] aggregates, state, persistence
