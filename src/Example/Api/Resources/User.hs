@@ -30,6 +30,7 @@ data UserTransferObject
   | UserSetAge  { age :: Int, male :: Maybe Bool }
   deriving (Show, Eq)
 
+-- Transformers
 readUsersParameters :: HttpRequest -> Either PV.ValidationFailure UserParameters
 readUsersParameters r = do
   userIdP  <- PV.required "user_id" (pathParameter r 1) (PV.string [PV.minLength 3, PV.maxLength 6])
@@ -67,7 +68,6 @@ instance FromJSON UserTransferObject where
 
   parseJSON _ = fail "expected object"
 
-
 -- Handler
 user :: HttpHandler
 user c r = validate3
@@ -76,4 +76,3 @@ user c r = validate3
   (hasBody validateUsersBody r :: IO (Either RequestBodyError UserTransferObject))
   \_ p b -> 
     httpOkRaw (BSL.fromString ("this is a user: " ++ T.unpack (userId p) ++ " " ++ (show b) ))
-

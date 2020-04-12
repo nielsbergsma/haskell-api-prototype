@@ -22,7 +22,7 @@ data PersonParameters = PersonParameters
   { personId :: T.Text
   }
 
--- Transformers
+-- Transformers & validators
 readPersonParameters :: HttpRequest -> Either PV.ValidationFailure PersonParameters
 readPersonParameters r = do
   personIdP  <- PV.required "person_id" (pathParameter r 1) (PV.string [PV.minLength 1, PV.maxLength 6])

@@ -105,6 +105,7 @@ instance HttpErrorable RequestBodyError where
       ]
     ]
 
+-- Authorization
 data AuthorizationError = Forbidden | Unauthorized
 
 instance HttpErrorable AuthorizationError where

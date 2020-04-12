@@ -1,17 +1,9 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 module Network.Api.Rest.Authorization.Jwt (
-      audienceFromString
-    , settings
-    , readJwksFile
-    , parseToken
-    , rolesMatch
-
-    , Audience
-    , JWKSet
-    , JWTError
-    , JWTValidationSettings
-    ) where
+    audienceFromString, settings, readJwksFile, parseToken, rolesMatch,
+    Audience, JWKSet, JWTError, JWTValidationSettings
+  ) where
 
 import Data.Maybe (fromJust)
 import Data.Aeson (eitherDecode, Value(..))
@@ -28,7 +20,7 @@ type Audience = StringOrURI
 audienceFromString :: String -> Audience
 audienceFromString a = fromJust $ preview stringOrUri a
 
-settings :: [StringOrURI] -> JWTValidationSettings
+settings :: [Audience] -> JWTValidationSettings
 settings as = defaultJWTValidationSettings (`elem` as)
 
 readJwksFile :: FilePath -> IO (Either String JWKSet)
